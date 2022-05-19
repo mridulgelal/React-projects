@@ -1,2 +1,1 @@
-# React-projects
-My various react projects.
+These are my react project from my react journey.
