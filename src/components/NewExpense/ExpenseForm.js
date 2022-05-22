@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  // const [enteredTitle, setEnteredTitle] = useState("");
+  // const [enteredTitle, setEnteredTitle] = useState(""); //using multiple state for a same form
   // const [enteredAmount, setEnteredAmount] = useState("");
   // const [enteredDate, setEnteredDate] = useState("");
 
@@ -11,21 +11,31 @@ const ExpenseForm = () => {
     enteredTitle: "",
     enteredAmount: "",
     enteredDate: "",
-  });
+  }); // using same state for multiple input of a form
 
   const titleChangeHandler = (event) => {
     // setEnteredTitle(event.target.value);
-    setUserInput({ ...userInput, enteredTitle: event.target.value }); //... is used to still retain all other values of the object
+    // setUserInput({ ...userInput, enteredTitle: event.target.value }); //... is used to still retain all other values of the object
+    setUserInput((prevState) => {
+      //using function to handel multiple state to alvays have updated snapshot of values
+      return { ...prevState, enteredTitle: event.target.value };
+    });
   };
 
   const amountChangeHandler = (event) => {
     // setEnteredAmount = event.target.value;
-    setUserInput({ ...userInput, enteredAmount: event.target.value });
+    // setUserInput({ ...userInput, enteredAmount: event.target.value });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredAmount: "event.target.value" };
+    });
   };
 
   const dateChangeHandler = (event) => {
     // setEnteredAmount = event.target.value;
-    setUserInput({ ...userInput, enteredDate: event.target.value });
+    // setUserInput({ ...userInput, enteredDate: event.target.value });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredDate: event.target.value };
+    });
   };
   return (
     <form>
